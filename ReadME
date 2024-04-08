@@ -14,6 +14,8 @@ Note:
      To run part1, run the file proj3p3_harshavarthan_hariharasudan.py
 	1. Enter the clearance value between 1-10
 	2. Enter the start and goal co-ordinates in cm range of (0-600) for x and (0-200) for y
+	Example: Clearance:1 , RPM1:20, RPM2:30 , Start : (50,100,0), Goal:(575,100)
+
  
  PART2:
  	1) install the packages and build it :
@@ -23,6 +25,8 @@ Note:
 	ros2 launch turtlebot3_project3 competition_world.launch.py
 	3)run the code to execute Astar algorithim:
 	ros2 run turtlebot3_project3 aaaa.py
+	Example: Clearance:1 , RPM1:20, RPM2:30 , Start : (50,100,0), Goal:(575,100)
+
    
 
 video links:
