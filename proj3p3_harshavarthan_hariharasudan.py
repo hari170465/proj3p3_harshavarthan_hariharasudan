@@ -185,11 +185,7 @@ def a_star(map_image, start, goal, step_size):
                 explored_nodes.append(next_node)
                 child.append(next_node[:2])
                 k = k+1
-        # if k >8000:
-        #     return backtrack(parents, start, current_node, action_king), costs[
-        #         current_node], explored_nodes, parent_node, child_node
 
-        #     break
         if child == []:
             continue
         else:
