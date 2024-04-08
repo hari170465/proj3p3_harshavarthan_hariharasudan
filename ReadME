@@ -1,0 +1,24 @@
+required packages: 
+numpy
+heapq
+cv2
+math
+time
+matplotlib.pyplot
+
+how to run the code:
+1) install the packages and build it :
+colcon build
+2) launch the competition world:
+ros2 launch turtlebot3_project3 competition_world.launch.py
+3)run the code to execute Astar algorithim:
+ros2 run turtlebot3_project3 proj3p3_harshavarthan_hariharasudan.py
+
+
+video links:
+1) the 2D map traversal
+https://drive.google.com/file/d/1Z9SfSSxFn7DEpEEbkMIb8ljB0Vb06vQD/view?usp=sharing
+2) the gazebo simulation
+
+
+github link:
