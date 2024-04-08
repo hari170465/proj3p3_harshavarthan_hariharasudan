@@ -260,8 +260,6 @@ def main(path):
         for velocity in path:
             oritent = velocity
             linear_vel, angular_vel = oritent[0] , oritent[1]
-            # print(linear_vel, angular_vel)
-            # print(type(linear_vel))
             velocity_publisher.publish_velocity(linear_vel, angular_vel)
             time.sleep(1)
         velocity_publisher.publish_velocity(0.0, 0.0)  # Stop the robot
