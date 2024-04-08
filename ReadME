@@ -7,13 +7,23 @@ time
 matplotlib.pyplot
 
 how to run the code:
-1) install the packages and build it :
-colcon build
-2) launch the competition world:
-ros2 launch turtlebot3_project3 competition_world.launch.py
-3)run the code to execute Astar algorithim:
-ros2 run turtlebot3_project3 aaaa.py
 
+
+Note:
+  PART1:
+     To run part1, run the file proj3p3_harshavarthan_hariharasudan.py
+	1. Enter the clearance value between 1-10
+	2. Enter the start and goal co-ordinates in cm range of (0-600) for x and (0-200) for y
+ 
+ PART2:
+ 	1) install the packages and build it :
+	colcon build
+	source install/setup.bashrc
+	2) launch the competition world:
+	ros2 launch turtlebot3_project3 competition_world.launch.py
+	3)run the code to execute Astar algorithim:
+	ros2 run turtlebot3_project3 aaaa.py
+   
 
 video links:
 1) the 2D map traversal
