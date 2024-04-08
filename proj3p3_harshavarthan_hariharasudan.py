@@ -317,16 +317,7 @@ if __name__ == "__main__":
         print(path[1])
         print(f"Cost: {cost}")  # print the cost
         print(len(path))
-        # for ite in path[2]:
-        #     print("============")
-        #     print(ite)
-        #     break
-        #     # node_path,action_path,velicity_path = path[ite]
-        #     for linear_vel, angular_vel in velicity_path:
-        #         # Process each velocity pair as needed
-        #         print("Linear Velocity: ", linear_vel, "Angular Velocity: ", angular_vel)
-        #         V.append((linear_vel, angular_vel))
-            
+
         print("velocities :", path[2])  # printing the velocities required
         # for i in path[2]:
         #     vel = i
