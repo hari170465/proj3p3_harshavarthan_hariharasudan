@@ -319,10 +319,7 @@ if __name__ == "__main__":
         print(len(path))
 
         print("velocities :", path[2])  # printing the velocities required
-        # for i in path[2]:
-        #     vel = i
-        #     print(vel[0],vel[1])
-        #     print(type(vel[0]))
+
         visualize(map_image, path, parent, child, explored_nodes)  # initialize the visualization
         r = 3.3
         L = 28.7
