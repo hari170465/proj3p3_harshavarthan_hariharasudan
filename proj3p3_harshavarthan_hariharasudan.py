@@ -55,7 +55,7 @@ for i in range(0, 601):  # 6000 width
             cv2.circle(map_image, (int(i), int(j)), 2, (0, 255, 0), -1)
 
         # circle obstacle
-        elif ((i - 400) ** 2 + (j - 80) ** 2 <= (60 + radius + clearance) ** 2):
+        elif ((i - 420) ** 2 + (j - 120) ** 2 <= (60 + radius + clearance) ** 2):
             cv2.circle(map_image, (int(i), int(j)), 2, (0, 255, 0), -1)
 
 
