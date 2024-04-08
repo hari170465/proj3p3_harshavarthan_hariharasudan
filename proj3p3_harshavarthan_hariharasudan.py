@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-import rclpy
-from rclpy.node import Node
-from std_msgs.msg import Int32MultiArray
-from geometry_msgs.msg import Twist
 import numpy as np
 import heapq
 import cv2
@@ -23,20 +19,6 @@ RPM2 = int(input("enter the right wheel velocity:"))
 radius = 22
 dt = 0.1
 
-# clearance = 10
-
-class VelocityPublisher(Node):
-    def __init__(self):
-        super().__init__('velocity_publisher')
-        self.publisher_ = self.create_publisher(Twist, '/cmd_vel', 10)
-        time.sleep(2)  # Give some time for the publisher to set up
-
-    def publish_velocity(self, linear_velocity, angular_velocity):
-        msg = Twist()
-        msg.linear.x = linear_velocity
-        msg.angular.z = angular_velocity
-        self.publisher_.publish(msg)
-        self.get_logger().info('Publishing: "%s"' % msg)
 
 def RoundToFifteen(x, base=15):
     return base * round(x / base)
@@ -55,7 +37,7 @@ for i in range(0, 601):  # 6000 width
             cv2.circle(map_image, (int(i), int(j)), 2, (0, 255, 0), -1)
 
         # circle obstacle
-        elif ((i - 420) ** 2 + (j - 120) ** 2 <= (60 + radius + clearance) ** 2):
+        elif ((i - 400) ** 2 + (j - 80) ** 2 <= (60 + radius + clearance) ** 2):
             cv2.circle(map_image, (int(i), int(j)), 2, (0, 255, 0), -1)
 
 
@@ -185,7 +167,11 @@ def a_star(map_image, start, goal, step_size):
                 explored_nodes.append(next_node)
                 child.append(next_node[:2])
                 k = k+1
+        # if k >8000:
+        #     return backtrack(parents, start, current_node, action_king), costs[
+        #         current_node], explored_nodes, parent_node, child_node
 
+        #     break
         if child == []:
             continue
         else:
@@ -247,30 +233,12 @@ def visualize(canvas_BGR, path, parent, child, explored_nodes):
 
     for i in range(35):
         video.write(canvas_BGR)
-
     # release the video writer
     print("Total Time Taken : ", time.time() - start_time, "seconds")
     video.release()
-
-
-def main(path):
-    rclpy.init()
-    velocity_publisher = VelocityPublisher()
-    try:
-        for velocity in path:
-            oritent = velocity
-            linear_vel, angular_vel = oritent[0] , oritent[1]
-            velocity_publisher.publish_velocity(linear_vel, angular_vel)
-            time.sleep(1)
-        velocity_publisher.publish_velocity(0.0, 0.0)  # Stop the robot
-    except KeyboardInterrupt:
-        pass
-    finally:
-        velocity_publisher.destroy_node()
-        rclpy.shutdown()
-
-# if __name__ == '__main__':
-#     # main(velocities)
+    cv2.imshow("final path", canvas_BGR)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     free_space = np.all(map_image == [255, 255, 255], axis=2)
@@ -317,9 +285,21 @@ if __name__ == "__main__":
         print(path[1])
         print(f"Cost: {cost}")  # print the cost
         print(len(path))
-
+        # for ite in path[2]:
+        #     print("============")
+        #     print(ite)
+        #     break
+        #     # node_path,action_path,velicity_path = path[ite]
+        #     for linear_vel, angular_vel in velicity_path:
+        #         # Process each velocity pair as needed
+        #         print("Linear Velocity: ", linear_vel, "Angular Velocity: ", angular_vel)
+        #         V.append((linear_vel, angular_vel))
+            
         print("velocities :", path[2])  # printing the velocities required
-
+        # for i in path[2]:
+        #     vel = i
+        #     print(vel[0],vel[1])
+        #     print(type(vel[0]))
         visualize(map_image, path, parent, child, explored_nodes)  # initialize the visualization
         r = 3.3
         L = 28.7
@@ -333,7 +313,6 @@ if __name__ == "__main__":
             angular_velocity = (r/L)*(2*np.pi*(ang/60)-2*np.pi*(lin/60))  # Angular velocity in radians per time
             print("respective linear", linear_velocity, "   respective angular   ", angular_velocity)
             vel.append((linear_velocity,angular_velocity))
-        main(vel)
     else:
         print("Cannot find the path.")
 
