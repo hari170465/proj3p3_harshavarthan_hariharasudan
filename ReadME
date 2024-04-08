@@ -12,7 +12,7 @@ colcon build
 2) launch the competition world:
 ros2 launch turtlebot3_project3 competition_world.launch.py
 3)run the code to execute Astar algorithim:
-ros2 run turtlebot3_project3 proj3p3_harshavarthan_hariharasudan.py
+ros2 run turtlebot3_project3 aaaa.py
 
 
 video links:
